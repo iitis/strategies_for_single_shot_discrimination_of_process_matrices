@@ -54,7 +54,7 @@ function sdp_distance_for_free_process_matrices(W0)
     problem = minimize(f, constraints)
     solve!(
         problem,
-        MOI.OptimizerWithAttributes(SCS.Optimizer, "eps_abs" => 1e-5);
+        MOI.OptimizerWithAttributes(SCS.Optimizer, "eps_abs" => 1e-8, "eps_rel" => 1e-8);
         silent_solver = true
     )
 
@@ -91,7 +91,7 @@ function sdp_distance_for_comb_process_matrices(W0)
     problem = minimize(f, constraints)
     solve!(
         problem,
-        MOI.OptimizerWithAttributes(SCS.Optimizer, "eps_abs" => 1e-5);
+        MOI.OptimizerWithAttributes(SCS.Optimizer, "eps_abs" => 1e-8, "eps_rel" => 1e-8);
         silent_solver = true
     )
 
@@ -132,7 +132,7 @@ function sdp_distance_for_sep_process_matrices(W0)
     problem = minimize(f, constraints)
     solve!(
         problem,
-        MOI.OptimizerWithAttributes(SCS.Optimizer, "eps_abs" => 1e-5);
+        MOI.OptimizerWithAttributes(SCS.Optimizer, "eps_abs" => 1e-8, "eps_rel" => 1e-8);
         silent_solver = true
     )
     return change_probability_to_distance(problem.optval)
